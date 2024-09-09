@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './App.css';  // 추가 스타일을 위한 CSS 파일
 
 function WebtoonGame() {
@@ -11,8 +11,9 @@ function WebtoonGame() {
   const [illegalReductionPercentage, setIllegalReductionPercentage] = useState(0); // 불법 웹툰으로 인한 감소율 (처음엔 0%)
   const [isAnimating, setIsAnimating] = useState(false); // 애니메이션 상태
   const [currentMonth, setCurrentMonth] = useState(1); // 1월부터 시작
-  const [showModal, setShowModal] = useState(false); // 모달 상태
+  const [showModal, setShowModal] = useState(false); // 월말 모달 상태
   const [title, setTitle] = useState("웹툰 작가 지망생"); // 기본 호칭
+  const [showStory, setShowStory] = useState(true); // 스토리 모달 상태
   const maxTaps = 10;
   const fixedExpenses = 800000; // 고정 지출
   const episodesPerMonth = 4; // 한 달에 4개의 에피소드
@@ -106,39 +107,57 @@ function WebtoonGame() {
     setIncome(baseIncome);
   };
 
+  // 스토리 모달 닫기
+  const closeStory = () => {
+    setShowStory(false);
+  };
+
   return (
     <div className="game-container">
-      <header>
-        <h1>웹툰 창작자 체험 게임</h1>
-        <p>현재 호칭: {title}</p> {/* 호칭 표시 */}
-        <p>현재 달: {currentMonth}월</p> {/* 현재 달 표시 */}
-      </header>
-
-      <main>
-        <div className="tap-area" onClick={handleTap}>
-          <img src="/images/pencil1.png" alt="pencil"
-            className={`pencil-image ${isAnimating ? 'animate' : ''}`}
-          />
-          <h2>웹툰 작업을 위해 여기를 터치하세요</h2>
+      {showStory && (
+        <div className="story-modal">
+          <h2>게임 스토리</h2>
+          <p>서울로 인기 웹툰 작가가 되기 위해 상경한 '나', 웹툰 작가가 되기 위해 만화 제작을 연습하겠어! 간단한 작화 알바부터 시작하자!</p>
+          <p>게임 목표: "웹툰을 그리고 인기를 얻어 인기 작가가 되보자!"</p>
+          <button onClick={closeStory}>시작하기</button>
         </div>
+      )}
 
-        <div className="status">
-          <p>현재 터치 횟수: {tapCount}/{maxTaps}</p>
-          <p>인기도: {popularity}</p>
-          <p>불법 웹툰으로 인한 수익 감소율: {(illegalReductionPercentage * 100).toFixed(1)}%</p>
-          <p>이번 에피소드 예상 수익: {formatCurrency(Math.floor(income * (1 - illegalReductionPercentage)))} </p>
-          <p>이번 달 총 수입: {formatCurrency(totalIncome)}</p> {/* 쉼표와 '원' 추가 */}
-          <p>이번 달 에피소드 완료 횟수: {episodeCount}/{episodesPerMonth}</p> {/* 에피소드 카운트 표시 */}
-        </div>
+      {!showStory && (
+        <>
+          <header>
+            <h1>웹툰 창작자 체험 게임</h1>
+            <p>현재 호칭: {title}</p> {/* 호칭 표시 */}
+            <p>현재 달: {currentMonth}월</p> {/* 현재 달 표시 */}
+          </header>
 
-        <div className={`modal ${showModal ? 'visible' : ''}`}>
-          <p>월세와 생활비가 통장에서 빠져나갔습니다. (-{formatCurrency(fixedExpenses)})</p>
-        </div>
-      </main>
+          <main>
+            <div className="tap-area" onClick={handleTap}>
+              <img src="/images/pencil1.png" alt="pencil"
+                className={`pencil-image ${isAnimating ? 'animate' : ''}`}
+              />
+              <h2>웹툰 작업을 위해 여기를 터치하세요</h2>
+            </div>
 
-      <footer>
-        <p>웹툰 한 화를 완성하려면 계속 터치하세요!</p>
-      </footer>
+            <div className="status">
+              <p>현재 터치 횟수: {tapCount}/{maxTaps}</p>
+              <p>인기도: {popularity}</p>
+              <p>불법 웹툰으로 인한 수익 감소율: {(illegalReductionPercentage * 100).toFixed(1)}%</p>
+              <p>이번 에피소드 예상 수익: {formatCurrency(Math.floor(income * (1 - illegalReductionPercentage)))} </p>
+              <p>이번 달 총 수입: {formatCurrency(totalIncome)}</p> {/* 쉼표와 '원' 추가 */}
+              <p>이번 달 에피소드 완료 횟수: {episodeCount}/{episodesPerMonth}</p> {/* 에피소드 카운트 표시 */}
+            </div>
+
+            <div className={`modal ${showModal ? 'visible' : ''}`}>
+              <p>월세와 생활비가 통장에서 빠져나갔습니다. (-{formatCurrency(fixedExpenses)})</p>
+            </div>
+          </main>
+
+          <footer>
+            <p>웹툰 한 화를 완성하려면 계속 터치하세요!</p>
+          </footer>
+        </>
+      )}
     </div>
   );
 }
