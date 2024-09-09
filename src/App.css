@@ -86,3 +86,20 @@ footer {
 .animate {
   transform: rotate(-20deg) translateY(-10px); /* 클릭 시 펜이 살짝 움직이는 모션 */
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.modal.visible {
+  display: block;
+}
