@@ -1,38 +1,88 @@
-.App {
+/* App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0; /* 전체 배경 색상 */
+}
+
+.game-container {
   text-align: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+header {
+  background-color: #4CAF50; /* 상단 배너 색상 */
   color: white;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
 }
 
-.App-link {
-  color: #61dafb;
+header h1 {
+  margin: 0;
+  font-size: 24px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tap-area {
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  margin: 20px auto;
+  width: 80%;
+  transition: background-color 0.3s ease;
+}
+
+.tap-area:hover {
+  background-color: #e0e0e0;
+}
+
+.status {
+  margin-top: 20px;
+}
+
+.status p {
+  font-size: 18px;
+  color: #333;
+}
+
+footer {
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  color: #888;
+  font-size: 14px;
+}
+
+.monthly-income {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.monthly-income h3 {
+  color: #333;
+}
+
+.monthly-income p {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.pencil-image {
+  width: 100px; /* 펜 이미지 크기 */
+  transition: transform 0.3s ease;
+}
+
+.animate {
+  transform: rotate(-20deg) translateY(-10px); /* 클릭 시 펜이 살짝 움직이는 모션 */
 }
