@@ -14,7 +14,7 @@ function WebtoonGame() {
   const [showModal, setShowModal] = useState(false); // 월말 모달 상태
   const [title, setTitle] = useState("웹툰 작가 지망생"); // 기본 호칭
   const [showStory, setShowStory] = useState(true); // 스토리 모달 상태
-  const maxTaps = 10;
+  const maxTaps = 80;
   const fixedExpenses = 800000; // 고정 지출
   const episodesPerMonth = 4; // 한 달에 4개의 에피소드
   const monthsInYear = 12; // 1년은 12개월
